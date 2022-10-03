@@ -7,7 +7,6 @@ import NewPost from './components/NewPost'
 
 const App = () => {
   const [posts, setPosts] = useState([])
-  // const [editFrom, setEditForm] = useState(false)
 
 
   const getPosts = () => {
@@ -18,7 +17,6 @@ const App = () => {
   }
 
   const handleCreate = (addBlogPost) => {
-    // let nextId = products[products.length - 1].id + 1
     axios.post('https://evening-taiga-64655.herokuapp.com/api/tattoo', addBlogPost)
       .then((response) => {
         // addItem.id = nextId
@@ -46,9 +44,7 @@ const App = () => {
     getPosts()
   }, [])
 
-  // const showEditForm = () => {
-  //   setEditForm(false)
-  // }
+
 
   return (
     <>
