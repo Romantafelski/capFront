@@ -10,14 +10,14 @@ const App = () => {
 
 
   const getPosts = () => {
-    axios.get('https://evening-taiga-64655.herokuapp.com/api/tattoo').then(
+    axios.get('https://evening-taiga-64655.herokuapp.com').then(
       (response) => setPosts(response.data),
       (err) => console.error(err),
     ).catch((error) => console.error(error))
   }
 
   const handleCreate = (addBlogPost) => {
-    axios.post('https://evening-taiga-64655.herokuapp.com/api/tattoo', addBlogPost)
+    axios.post('https://evening-taiga-64655.herokuapp.com', addBlogPost)
       .then((response) => {
         // addItem.id = nextId
         setPosts([...posts, response.data])
@@ -25,19 +25,26 @@ const App = () => {
   }
 
   const handleDelete = (deleteBlogPost) => {
-    axios.delete('https://evening-taiga-64655.herokuapp.com/api/tattoo/' + deleteBlogPost.id).then
+    axios.delete('https://evening-taiga-64655.herokuapp.com/' + deleteBlogPost.id).then
       ((response) => {
         setPosts(posts.filter(blogPost => blogPost.id !== deleteBlogPost.id))
       })
   }
 
   const handleUpdate = (editBlogPost) => {
-    axios.put('https://evening-taiga-64655.herokuapp.com/api/tattoo' + editBlogPost.id, editBlogPost).then((response) => {
+    axios.put('https://evening-taiga-64655.herokuapp.com/' + editBlogPost.id, editBlogPost).then((response) => {
       setPosts(posts.map((blogPost) => {
         return editBlogPost.id !== editBlogPost.id ? blogPost : editBlogPost
 
       }))
     })
+  }
+
+  const getAdmin = () => {
+    axios.get('https://localhost:8000/api/admin').then(
+      (response) => setPosts(response.data),
+      (err) => console.error(err),
+    ).catch((error) => console.error(error))
   }
 
   useEffect(() => {
