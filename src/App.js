@@ -32,19 +32,12 @@ const App = () => {
   }
 
   const handleUpdate = (editBlogPost) => {
-    axios.put('https://evening-taiga-64655.herokuapp.com/api/tattoo/' + editBlogPost.id, editBlogPost).then((response) => {
+    axios.put('https://evening-taiga-64655.herokuapp.com/api/tattoo' + editBlogPost.id, editBlogPost).then((response) => {
       setPosts(posts.map((blogPost) => {
         return editBlogPost.id !== editBlogPost.id ? blogPost : editBlogPost
 
       }))
     })
-  }
-
-  const get = () => {
-    axios.get('https://localhost:8000/api/admin').then(
-      (response) => setPosts(response.data),
-      (err) => console.error(err),
-    ).catch((error) => console.error(error))
   }
 
   useEffect(() => {
